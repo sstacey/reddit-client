@@ -11,7 +11,6 @@ function Article( { article }) {
                 <li>Ups:{article.ups}</li>
                 <li>Downs:{article.downs}</li>
                 <li>Comments:{article.num_comments}</li>
-
             </ul>
         </article>
     )
