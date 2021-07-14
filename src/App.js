@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
+import { updateSearchTerm } from '../src/features/article/articleSlice'
+import { useDispatch, useSelector } from 'react-redux'
+
 import Articles from './features/article/Articles'
 
 function App() {
 
-  const [subreddit, setSubreddit] = useState('webdev')
-  const [subFound, setSubFound] = useState(true)  
+  const searchTerm = useSelector((state) => state.article.searchTerm)
+  const dispatch = useDispatch()
 
   return (
     <div className="App">
       <header className="App-header">
-        <input type="text" name="sub" id="sub" className="input" value={subreddit} onChange={e => setSubreddit(e.target.value)}/>
-        <label htmlFor="sub" hidden={subFound}>No subs found!</label>
+        <input type="text" name="search" id="search" className="input" value={searchTerm} onChange={e => dispatch(updateSearchTerm(e.target.value))}/>
       </header>
-      <Articles subreddit={subreddit} />
+      <Articles />
     </div>
   );
 }
