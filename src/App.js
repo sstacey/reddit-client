@@ -1,36 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Counter } from './features/counter/Counter';
-import Article from '../src/features/article/Article'
+import { useDispatch, useSelector } from 'react-redux'
 
-import Reddit from './utils/Reddit'
+import { fetchArticlesBySub } from '../src/features/article/articleSlice'
+import Article from '../src/features/article/Article'
 
 function App() {
 
-  const [articles, setArticles] = useState([])
   const [subreddit, setSubreddit] = useState('webdev')
-  const [subFound, setSubFound] = useState(true)
+  const [subFound, setSubFound] = useState(true)  
+  
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    Reddit.getSubreddits(subreddit).then(resp => {
-      if (resp) {
-        setArticles(resp)
-      } else {
-        console.log('No subs found')
-      }
-    })
-    // fetch(`https://www.reddit.com/r/${subreddit}.json?limit=50`).then(res => {
-    //   if (res.status !== 200) {
-    //     setSubFound(false)
-    //     return console.log('No subreddit found')
-    //   }
-    //   res.json().then(data => {
-    //     if (data !== null) {
-    //       setSubFound(true)
-    //       setArticles(data.data.children)
-    //     } 
-    //   })
-    // })
+    dispatch(fetchArticlesBySub(subreddit))
   }, [subreddit])
+
+  const articles = useSelector((state) => state.article.articles)
+
+
 
   return (
     <div className="App">
