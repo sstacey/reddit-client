@@ -9,11 +9,12 @@ function Articles() {
 
     const dispatch = useDispatch()
     const articles = useSelector((state) => state.article.articles)
-    const search = ''
+    const searchTerm = useSelector((state) => state.article.searchTerm)
 
     useEffect(() => {
         dispatch(fetchArticlesBySub())
-    }, [])
+
+    }, [searchTerm])
 
 
     return (

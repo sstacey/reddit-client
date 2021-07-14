@@ -22,12 +22,12 @@ export const articleSlice = createSlice({
     initialState,
     reducers: {
         updateSearchTerm(state, action) {
-            state.searchTerm = action.payload
+            state.searchTerm = action.payload.toLowerCase()
         }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchArticlesBySub.fulfilled, (state, action) => {
-            state.articles = action.payload
+            state.articles = action.payload.filter(article => article.data.title.toLowerCase().includes(state.searchTerm))
         })
     }
 })
