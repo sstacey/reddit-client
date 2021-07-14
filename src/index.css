@@ -2,6 +2,8 @@ body {
     margin: 0;
     padding: 0;
 }
+
+/* Header styles */
 .app-header {
     padding: 1rem;
     width: 100%;
@@ -25,4 +27,11 @@ article {
     padding: 1rem;
     box-shadow:0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
     transition: box-shadow .1s ease-in;
+}
+
+article ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+
 }

@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <header className="app-header">
-        <h3>RedditClient</h3>
+        <h3 className="logo">RedditClient</h3>
         <input type="text" name="search" id="search" className="input" placeholder="Search" value={searchTerm} onChange={e => dispatch(updateSearchTerm(e.target.value))}/>
       </header>
       <Articles />
