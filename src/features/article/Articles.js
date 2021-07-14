@@ -5,15 +5,17 @@ import { fetchArticlesBySub } from '../article/articleSlice'
 
 import Article from './Article'
 
-function Articles({subreddit }) {
+function Articles() {
 
     const dispatch = useDispatch()
+    const articles = useSelector((state) => state.article.articles)
+    const searchTerm = useSelector((state) => state.article.searchTerm)
 
     useEffect(() => {
-        dispatch(fetchArticlesBySub(subreddit))
-    }, [subreddit])
+        dispatch(fetchArticlesBySub())
 
-    const articles = useSelector((state) => state.article.articles)
+    }, [searchTerm])
+
 
     return (
         <div className="articles">
