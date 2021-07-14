@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchArticlesBySub } from '../src/features/article/articleSlice'
 import Article from '../src/features/article/Article'
 
 import Reddit from './utils/Reddit'
 
 function App() {
 
-  const [articles, setArticles] = useState([])
   const [subreddit, setSubreddit] = useState('webdev')
-  const [subFound, setSubFound] = useState(true)
+  const [subFound, setSubFound] = useState(true)  
+  
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    Reddit.getSubreddits(subreddit).then(resp => {
-      setArticles(resp)
-    })
+    dispatch(fetchArticlesBySub(subreddit))
   }, [subreddit])
+
+  const articles = useSelector((state) => state.article.articles)
+
+
 
   return (
     <div className="App">
