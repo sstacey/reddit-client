@@ -5,9 +5,19 @@ body {
 
 /* Header styles */
 .app-header {
-    padding: 1rem;
+    height: 60px;
     width: 100%;
+    background: white;
     box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
+    position: fixed;
+    z-index: 10;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
 }
 
 .app-header .input {
@@ -40,6 +50,11 @@ article ul {
 
 #articles {
     display: flex;
+    padding-top: 2rem;
+}
+
+.subreddit-list {
+    padding-top: 1rem;
 }
 
 .subreddit-list li {
@@ -55,6 +70,7 @@ article ul {
 
 .subreddit-list button:hover {
     background: lightgray;
+    cursor: pointer;
 }
 
 .selected {
