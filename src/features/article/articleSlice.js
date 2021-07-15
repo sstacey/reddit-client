@@ -2,13 +2,26 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     articles: [],
-    searchTerm: ''   
+    searchTerm: '',
+    subreddits: [
+        'Webdev',
+        'Home',
+        'AskReddit',
+        'PublicFreakout',
+        'pics',
+        'politics',
+        'news',
+        'worldnews',
+        'funny',
+        'NoStupidQuestions',
+        'nextfuckinglevel'
+    ]   
 }
 
 export const fetchArticlesBySub = createAsyncThunk(
     'article/fetchArticlesBySub',
-    async (thunkAPI) => {
-        const resp = await fetch(`https://www.reddit.com/r/webdev.json?limit=100`)
+    async (subreddit, thunkAPI) => {
+        const resp = await fetch(`https://www.reddit.com/r/${subreddit}.json?limit=100`)
         const jsonResp = await resp.json()
         if (jsonResp.error) {
             return []
@@ -33,6 +46,7 @@ export const articleSlice = createSlice({
 })
 
 export const selectArticles = (state) => state.articles
+export const subOptions = (state) => state.subOptions
 
 export const { updateSearchTerm } = articleSlice.actions
 

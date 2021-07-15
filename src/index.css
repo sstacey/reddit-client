@@ -35,3 +35,30 @@ article ul {
     list-style: none;
 
 }
+
+/* Subreddit Selection Styles */
+
+#articles {
+    display: flex;
+}
+
+.subreddit-list li {
+    list-style: none;
+}
+
+.subreddit-list button {
+    width: 200px;
+    padding: 10px;
+    background: white;
+    border: none;
+}
+
+.subreddit-list button:hover {
+    background: lightgray;
+}
+
+.selected {
+    color: blue;
+    background: black;
+}
+
