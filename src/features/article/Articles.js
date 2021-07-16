@@ -31,17 +31,17 @@ function Articles() {
 
 
     return (
-        <div id="articles">
-            <div className="articles">
-                {
-                    (articles) ? articles.map(article => <Article key={article.data.id} article={article.data} />) : ''
-                }
-            </div>
+        <div class="main-container">
             <aside>
                 <ul className="subreddit-list">
                     {subredditLinks}
                 </ul>
             </aside>
+            <div className="articles">
+                {
+                    (articles) ? articles.map(article => <Article key={article.data.id} article={article.data} />) : ''
+                }
+            </div>
         </div>
     )
 }
