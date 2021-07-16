@@ -12,6 +12,7 @@ function Articles() {
     const articles = useSelector((state) => state.article.articles)
     const searchTerm = useSelector((state) => state.article.searchTerm)
     const subreddits = useSelector((state) => state.article.subreddits)
+    const articlesLoading = useSelector((state) => state.article.articlesLoading)
 
     useEffect(() => {
         dispatch(fetchArticlesBySub(subreddit))
@@ -29,19 +30,22 @@ function Articles() {
 
     const subredditLinks = subreddits.map(sub => (<li key={sub}><button onClick={handleSubredditChange} id={sub}>{sub}</button></li>))
 
+    if (articlesLoading) {
+        return (<div className="loading-message"><h2>Loading...</h2></div>)
+    }
 
     return (
-        <div id="articles">
-            <div className="articles">
-                {
-                    (articles) ? articles.map(article => <Article key={article.data.id} article={article.data} />) : ''
-                }
-            </div>
+        <div className="main-container">
             <aside>
                 <ul className="subreddit-list">
                     {subredditLinks}
                 </ul>
             </aside>
+            <div className="articles">
+                {
+                    (articles) ? articles.map(article => <Article key={article.data.id} article={article.data} />) : ''
+                }
+            </div>
         </div>
     )
 }

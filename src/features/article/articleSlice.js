@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 const initialState = {
     articles: [],
     searchTerm: '',
+    articlesLoading: false,
     subreddits: [
         'Webdev',
         'Home',
@@ -40,7 +41,11 @@ export const articleSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchArticlesBySub.fulfilled, (state, action) => {
+            state.articlesLoading = false
             state.articles = action.payload.filter(article => article.data.title.toLowerCase().includes(state.searchTerm))
+        })
+        builder.addCase(fetchArticlesBySub.pending, (state) => {
+            state.articlesLoading = true
         })
     }
 })
