@@ -8,9 +8,9 @@ function Article( { article }) {
             </a>
             <h4>Posted by: {article.author_fullname}</h4>
             <ul>
-                <li>Ups:{article.ups}</li>
-                <li>Downs:{article.downs}</li>
-                <li>Comments:{article.num_comments}</li>
+                <li><i class="fas fa-arrow-up"></i> {article.ups}</li>
+                <li><i class="fas fa-arrow-down"></i> {article.downs}</li>
+                <li><i class="fas fa-comments"></i> {article.num_comments}</li>
             </ul>
         </article>
     )
